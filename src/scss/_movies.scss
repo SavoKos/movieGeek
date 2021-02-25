@@ -1,0 +1,85 @@
+@import 'base';
+
+.movies {
+  img {
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .row {
+    padding: 50px 0;
+  }
+
+  .search-failed {
+    text-align: center;
+  }
+
+  .col-md-3 {
+    margin-top: 50px;
+  }
+
+  .movie-details,
+  .movie-review {
+    display: flex;
+    align-items: center;
+    width: 238px;
+
+    .star {
+      width: 15px;
+      height: 15px;
+      margin-bottom: 6px;
+    }
+  }
+
+  .movie-review {
+    justify-content: flex-start;
+    text-align: center;
+
+    .review {
+      display: flex;
+      align-items: center;
+
+      h6 {
+        padding-left: 5px;
+      }
+    }
+
+    .genre {
+      color: $yellow;
+      font-size: 15px;
+      opacity: 0.7;
+      margin-right: 1.5rem;
+    }
+  }
+
+  .movie-details {
+    margin-top: 1.5rem;
+    span {
+      padding-left: 10px;
+      font-size: 1.1rem;
+      opacity: 0.5;
+    }
+  }
+
+  .movie-title {
+    font-family: 'Passion one';
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 1.5rem;
+  }
+
+  img {
+    cursor: pointer;
+  }
+}

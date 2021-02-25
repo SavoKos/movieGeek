@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="shortcut icon" href="/src/img/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="src/scss/main.css" />
+    <script defer src="/src/js/main.js"></script>
+    <title>movieGeek - Find your favorite movie</title>
+  </head>
+  <body>
+    <div class="container nav__bar">
+      <h1 class="logo">movie<span>Geek</span></h1>
+      <div class="search">
+        <form action="">
+          <input
+            type="text"
+            placeholder="enter movie title..."
+            class="inputSearch"
+          />
+          <button type="submit">
+            <img src="src/img/search.svg" alt="Search" />
+          </button>
+        </form>
+      </div>
+      <div class="nav__links">
+        <div class="movie-link">
+          <a href="#" class="movies__link">Movies</a>
+          <div class="movie-dropdown dropdown">
+            <a class="media-dropdown" data-media="movie" data-type="top_rated"
+              >Top rated</a
+            >
+            <hr />
+            <a class="media-dropdown" data-media="movie" data-type="popular"
+              >Popular now</a
+            >
+            <hr />
+            <a class="media-dropdown" data-media="movie" data-type="upcoming"
+              >Upcoming</a
+            >
+            <hr />
+            <a class="media-dropdown" data-media="movie" data-type="now_playing"
+              >In theatres</a
+            >
+          </div>
+        </div>
+        <div class="tvshow-link">
+          <a href="#" class="tvshows__link">TV Shows</a>
+          <div class="tvshow-dropdown dropdown hidden">
+            <a class="media-dropdown" data-media="tv" data-type="top_rated"
+              >Top rated</a
+            >
+            <hr />
+            <a class="media-dropdown" data-media="tv" data-type="popular"
+              >Popular now</a
+            >
+            <hr />
+            <a class="media-dropdown" data-media="tv" data-type="airing_today"
+              >Airing Today</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="filter-container">
+        <select name="genre" id="">
+          <option value="default" selected>Any genres</option>
+          <option value="drama">Drama</option>
+          <option value="comedy">Comedy</option>
+          <option value="action">Action</option>
+          <option value="thriler">Thriller</option>
+        </select>
+        <select name="sort" id="">
+          <option value="default" selected>Sort by</option>
+          <option value="popularity">Popularity</option>
+          <option value="releaseyear">Release year</option>
+          <option value="rating">Rating</option>
+        </select>
+      </div>
+    </div>
+    <div class="container movies">
+      <div class="row container__display-movies">
+        <!-- <div class="col-md-3">
+          <img src="/src/img/godfather.png" alt="" />
+          <div class="movie-details">
+            <h2 class="movie-title">THE GODFATHER<span>(2006)</span></h2>
+          </div>
+          <div class="movie-review">
+            <h4 class="genre">Drama</h4>
+            <div class="review">
+              <img src="/src/img/star.svg" alt="" class="star" />
+              <h6>7.4</h6>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="pagination">
+      <img src="/src/img/leftarrow.svg" alt="" class="prevpage" />
+      <p><span class="page">1</span>. page</p>
+      <img src="/src/img/rightarrow.svg" alt="" class="nextpage" />
+    </div>
+  </body>
+</html>

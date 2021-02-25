@@ -1,0 +1,102 @@
+@import 'base';
+@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Passion+One&family=Raleway:wght@300;400&display=swap');
+
+.nav__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 30px;
+
+  .logo {
+    cursor: pointer;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .nav__links {
+    display: flex;
+
+    .movie-link:hover .movie-dropdown,
+    .tvshows__link:hover + .tvshow-dropdown,
+    .dropdown:hover {
+      display: block;
+    }
+
+    .movie-link,
+    .tvshow-link {
+      display: flex;
+      justify-content: center;
+    }
+
+    .movie-dropdown,
+    .tvshow-dropdown {
+      display: none;
+    }
+
+    .dropdown {
+      position: absolute;
+      background-color: $white;
+      border-radius: 20px;
+      padding: 2rem;
+      padding-left: 3rem;
+      text-align: center;
+      margin-top: 1.8rem;
+
+      hr {
+        background-color: #000;
+        opacity: 0.2;
+        width: 100%;
+      }
+
+      a {
+        color: $gray;
+        padding: 0;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .search {
+    width: 50%;
+    display: flex;
+    position: relative;
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 0;
+      padding-left: 20px;
+      outline: 0;
+      background-color: $white;
+      border-radius: 20px;
+      font-size: 20px;
+    }
+
+    button {
+      background-color: transparent;
+      position: absolute;
+      right: 18px;
+      top: 16px;
+      border: 0;
+      outline: 0;
+    }
+  }
+
+  h1 {
+    color: $white;
+    font-family: 'Mouse Memoirs';
+    span {
+      color: $yellow;
+      font-family: 'Mouse Memoirs';
+    }
+  }
+
+  a {
+    color: $white;
+    font-size: 20px;
+    text-decoration: none;
+    margin-right: 60px;
+  }
+}
