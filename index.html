@@ -32,7 +32,7 @@
       </div>
       <div class="nav__links">
         <div class="movie-link">
-          <a href="#" class="movies__link">Movies</a>
+          <a class="movies__link">Movies</a>
           <div class="movie-dropdown dropdown">
             <a class="media-dropdown" data-media="movie" data-type="top_rated"
               >Top rated</a
@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="tvshow-link">
-          <a href="#" class="tvshows__link">TV Shows</a>
+          <a class="tvshows__link">TV Shows</a>
           <div class="tvshow-dropdown dropdown hidden">
             <a class="media-dropdown" data-media="tv" data-type="top_rated"
               >Top rated</a
@@ -71,22 +71,62 @@
     </div>
     <div class="container">
       <div class="filter-container">
-        <select name="genre" id="">
-          <option value="default" selected>Any genres</option>
-          <option value="drama">Drama</option>
-          <option value="comedy">Comedy</option>
-          <option value="action">Action</option>
-          <option value="thriler">Thriller</option>
-        </select>
-        <select name="sort" id="">
-          <option value="default" selected>Sort by</option>
-          <option value="popularity">Popularity</option>
-          <option value="releaseyear">Release year</option>
-          <option value="rating">Rating</option>
-        </select>
+        <div name="genre" class="filterGenre filter">
+          <p>Any genre</p>
+          <!-- <option value="undefined" selected>Any genres</option>
+
+          <option value="Family">Family</option>
+          <option value="Romance">Romance</option>
+          <option value="Horror">Horror</option>
+          <option value="Animation">Animation</option>
+          <option value="History">History</option>
+          <option value="Crime">Crime</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Mystery">Mystery</option>
+          <option value="Documentary">Documentary</option>
+          <option value="War">War</option> -->
+        </div>
+        <div class="filter-dropdown dropdown hidden">
+          <div class="filter-row">
+            <a data-genre="Drama">Drama</a>
+            <a data-genre="Comedy">Comedy</a>
+            <a data-genre="Action">Action</a>
+            <a data-genre="Thriller">Thriller</a>
+            <a data-genre="Fantasy">Fantasy</a>
+            <a data-genre="Science Fiction">Science Fiction</a>
+            <a data-genre="Family">Family</a>
+            <a data-genre="Romance">Romance</a>
+          </div>
+          <div class="filter-row">
+            <a data-genre="Horror">Horror</a>
+            <a data-genre="Animation">Animation</a>
+            <a data-genre="War">War</a>
+            <a data-genre="Documentary">Documentary</a>
+            <a data-genre="Mystery">Mystery</a>
+            <a data-genre="Adventure">Adventure</a>
+            <a data-genre="Crime">Crime</a>
+            <a data-genre="History">History</a>
+          </div>
+        </div>
+        <div name="sort" id="" class="sortFilter filter"><p>Sort By</p></div>
+        <div class="sort-dropdown dropdown hidden">
+          <a data-sort="undefined">Sort by</a>
+          <hr />
+          <a data-genre="Popularity">Popularity</a>
+          <hr />
+          <a data-genre="Release year">Release year</a>
+          <hr />
+          <a data-genre="Rating">Rating</a>
+          <hr />
+        </div>
       </div>
     </div>
     <div class="container movies">
+      <h3 class="searched">
+        <img src="/src/img/search.svg" alt="" /><span
+          class="searchedLabel"
+        ></span>
+      </h3>
       <div class="row container__display-movies">
         <!-- <div class="col-md-3">
           <img src="/src/img/godfather.png" alt="" />
@@ -110,3 +150,10 @@
     </div>
   </body>
 </html>
+
+<!-- <option value="Drama">Drama</option>
+<option value="Comedy">Comedy</option>
+<option value="Action">Action</option>
+<option value="Thriler">Thriller</option>
+<option value="Fantasy">Thriller</option>
+<option value="Science Fiction">Science Fiction</option> -->

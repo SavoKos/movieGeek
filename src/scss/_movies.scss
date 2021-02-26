@@ -6,6 +6,15 @@
     cursor: pointer;
   }
 
+  .searched {
+    margin-bottom: -55px;
+    margin-top: 45px;
+
+    img {
+      color: $white;
+    }
+  }
+
   .row {
     padding: 50px 0;
   }
