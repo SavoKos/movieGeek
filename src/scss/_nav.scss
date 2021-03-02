@@ -15,6 +15,22 @@
     width: 100%;
   }
 
+  .back {
+    position: absolute;
+    display: flex;
+    left: 10rem;
+    align-items: center;
+    h1 {
+      font-size: 1.7rem;
+      margin-bottom: 0.2rem;
+      margin-left: 1rem;
+    }
+
+    img {
+      cursor: pointer;
+    }
+  }
+
   .nav__links {
     display: flex;
 

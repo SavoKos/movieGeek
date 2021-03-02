@@ -3,6 +3,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Passion+One&family=Raleway:wght@300;400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Passion+One&family=Raleway:wght@300;400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Passion+One&family=Raleway:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Passion+One&family=Raleway:wght@300;400&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -50,6 +51,27 @@ body {
 
 .nav__bar form {
   width: 100%;
+}
+
+.nav__bar .back {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  left: 10rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.nav__bar .back h1 {
+  font-size: 1.7rem;
+  margin-bottom: 0.2rem;
+  margin-left: 1rem;
+}
+
+.nav__bar .back img {
+  cursor: pointer;
 }
 
 .nav__bar .nav__links {
@@ -393,13 +415,13 @@ body {
 }
 
 .slider .content {
-  padding: 5px 20px 5px 20px;
+  margin: 1rem;
 }
 
 .slider .content p {
   color: #cfdbd5;
   padding: 15px 5px 10px 5px;
-  text-align: justify;
+  text-align: center;
   font-weight: 300;
   font-size: 1rem;
 }
@@ -474,5 +496,67 @@ body {
   font-size: 1.5rem;
   text-align: center;
   margin-top: 1rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Raleway';
+}
+
+body {
+  font-size: 62.5%;
+  background-color: #232323;
+  color: #ebebeb;
+}
+
+.modal-window {
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  overflow-y: hidden;
+  left: 0;
+  z-index: 20;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  -webkit-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+}
+
+.modal-window .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #232323;
+  padding: 1rem 2rem;
+}
+
+.modal-window .content iframe {
+  width: 1000px;
+  height: 600px;
+}
+
+.modal-window .content .close-modal {
+  height: 1rem;
+  width: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 /*# sourceMappingURL=movieInfoMain.css.map */

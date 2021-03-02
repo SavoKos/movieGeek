@@ -1,14 +1,16 @@
 const contentContainer = document.querySelector('.content');
+const APIKey = `7325ea7f7ce78a5adf1d879ccbbe0117`;
 let recommendedContainer;
 let urlMedia = window.location.hash.slice(
   window.location.hash.indexOf('/') + 1
 );
+let trailerKey;
 let urlID = window.location.hash.slice(1, window.location.hash.indexOf('/'));
 const renderFullMovieInfo = async function (movieID) {
   contentContainer.innerHTML = '';
   urlMedia = window.location.hash.slice(window.location.hash.indexOf('/') + 1);
   const res = await fetch(
-    `https://api.themoviedb.org/3/${urlMedia}/${movieID}?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US`
+    `https://api.themoviedb.org/3/${urlMedia}/${movieID}?api_key=${APIKey}&language=en-US`
   );
   const data = await res.json();
   insertMovieContent(data);
@@ -24,11 +26,11 @@ const insertMovieContent = async function (movie) {
   const recommended = await fetchRecommendedMovies(movie.id, urlMedia);
   const tagline = movie.tagline === '' ? '' : `"${movie.tagline}"`;
   const IMDbLink = movie.imdb_id ? `` : '';
-
+  const cast = await fetchCast();
   const releaseDate = movie.release_date
     ? movie.release_date.slice(0, 4)
     : movie.first_air_date.slice(0, 4);
-  const trailerKey = await fetchTrailer(movie, urlMedia);
+  trailerSrc = await fetchTrailer(movie, urlMedia);
   const html = `
   <div class="container movie-info">
         <div class="poster">
@@ -37,7 +39,7 @@ const insertMovieContent = async function (movie) {
             ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
             : `/src/img/defaultposter.png`
         } alt="" />
-          <a href="https://www.youtube.com/watch?v=${trailerKey}" class="trailer"
+          <a class="trailer"
             >Watch Trailer</a
           >
         </div>
@@ -87,18 +89,7 @@ const insertMovieContent = async function (movie) {
         <div class="container cast">
         <h1>Cast</h1>
         <section class="slider owl-carousel">
-          <div class="card">
-            <div class="img">
-              <img src="/src/img/cast.png" alt="" />
-            </div>
-            <div class="content">
-              <p>
-                <span>Marlon Brando</span>
-                <br />
-                Don Vito Corleone
-              </p>
-            </div>
-          </div>
+          ${cast}
         </section>
       </div>  
         </section>
@@ -109,6 +100,16 @@ const insertMovieContent = async function (movie) {
           </div>
         </div>
       </div>
+      <div class="modal-window hidden">
+      <div class="content">
+        <img src="/src/img/close.svg" alt="" class="close-modal" />
+        <iframe
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
   `;
   document.title = `${movie.title || movie.name} (${releaseDate}) - movieGeek`;
   contentContainer.insertAdjacentHTML('afterbegin', html);
@@ -118,6 +119,12 @@ const insertMovieContent = async function (movie) {
   document
     .querySelector('.recommended')
     .addEventListener('click', renderRecommendedMovie);
+  document
+    .querySelector('.trailer')
+    .addEventListener('click', modalWindowHandler);
+
+  document.querySelector('.close-modal').addEventListener('click', closeModal);
+  document.querySelector('.modal-window').addEventListener('click', closeModal);
 };
 
 const renderRecommendedMovie = function (e) {
@@ -152,7 +159,7 @@ const displayGenres = function (movie) {
 const fetchTrailer = async function (movie, media) {
   try {
     const res = await fetch(
-      `https://api.themoviedb.org/3/${media}/${movie.id}/videos?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US`
+      `https://api.themoviedb.org/3/${media}/${movie.id}/videos?api_key=${APIKey}&language=en-US`
     );
     const data = await res.json();
     if (!data.results[0]) throw new Error('No trailers found!');
@@ -160,7 +167,8 @@ const fetchTrailer = async function (movie, media) {
       Object.values(res).includes('Trailer')
     );
     if (!youtubeTrailer) youtubeTrailer = data.results[0].key;
-    return youtubeTrailer.key;
+
+    return `https://www.youtube.com/embed/${youtubeTrailer.key}`;
   } catch (error) {
     console.log(error);
   }
@@ -168,16 +176,45 @@ const fetchTrailer = async function (movie, media) {
 const fetchIMDbID = async function () {
   urlID = window.location.hash.slice(1, window.location.hash.indexOf('/'));
   const res = await fetch(
-    `https://api.themoviedb.org/3/tv/${urlID}/external_ids?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US`
+    `https://api.themoviedb.org/3/tv/${urlID}/external_ids?api_key=${APIKey}&language=en-US`
   );
   const data = await res.json();
   console.log(data);
   return data.imdb_id;
 };
 
+const fetchCast = async function () {
+  const castArray = [];
+  const res = await fetch(
+    `https://api.themoviedb.org/3/${urlMedia}/${urlID}/credits?api_key=${APIKey}&language=en-US`
+  );
+
+  const data = await res.json();
+  const cast = data.cast;
+  console.log(cast);
+  cast.forEach(act => {
+    if (!act.profile_path) return;
+    castArray.push(`
+  <div class="card">
+    <div class="img">
+      <img src="https://image.tmdb.org/t/p/w300${act.profile_path}" alt="" />
+  </div>
+  <div class="content">
+   <p>
+   <span>${act.name}</span>
+   <br />
+   ${act.character}
+   </p>
+  </div>
+ </div>
+  `);
+  });
+  return castArray.join('');
+};
+
 const fetchRecommendedMovies = async function (movieID, media) {
   const res = await fetch(
-    `https://api.themoviedb.org/3/${media}/${movieID}/recommendations?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US&page=1`
+    `https://api.themoviedb.org/3/${media}/${movieID}/recommendations?api_key=${APIKey}&language=en-US&page=1`
   );
   const data = await res.json();
   const allRecommendations = data.results;
@@ -190,13 +227,43 @@ const fetchRecommendedMovies = async function (movieID, media) {
     }" data-media=${recc.media_type || media}>
     <img src=${
       recc.poster_path
-        ? `https://image.tmdb.org/t/p/w300${recc.poster_path}`
+        ? `https://image.tmdb.org/t/p/w500${recc.poster_path}`
         : `/src/img/defaultposter.png`
     } alt="" />
       <h2>${recc.title || recc.name}</h2>
     </div>`;
   });
   return displayRecommended.join('');
+};
+
+const modalWindowHandler = function () {
+  const modalContainer = document.querySelector('.modal-window');
+  const iframe = document.querySelector('iframe');
+
+  window.scroll(0, 0);
+  iframe.src = trailerSrc;
+  document.body.style.overflow = 'hidden';
+  modalContainer.style.display = 'block';
+  modalContainer.classList.remove('hidden');
+};
+
+const closeModal = function (e) {
+  if (
+    !(
+      e.target.classList.contains('modal-window') ||
+      e.target.classList.contains('close-modal')
+    )
+  )
+    return;
+  const modalContainer = document.querySelector('.modal-window');
+  const iframe = document.querySelector('iframe');
+
+  document.body.style.overflow = 'auto';
+  iframe.src = '';
+  modalContainer.classList.add('hidden');
+  setTimeout(() => {
+    modalContainer.style.display = 'none';
+  }, 700);
 };
 
 const imdbPlugin = function (d, s, id) {
@@ -213,4 +280,8 @@ const imdbPlugin = function (d, s, id) {
 document.querySelector('.logo').addEventListener('click', function () {
   window.open('../../index.html', '_self');
 });
+
 document.addEventListener('loadedmetadata', renderFullMovieInfo(urlID));
+document.querySelector('.back').addEventListener('click', function () {
+  window.open('/index.html', '_self');
+});
