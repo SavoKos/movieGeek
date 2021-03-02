@@ -12,7 +12,7 @@
     />
     <link rel="shortcut icon" href="/src/img/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="src/scss/main.css" />
-    <script defer src="/src/js/main.js"></script>
+    <script type="module" defer src="/src/js/main.js"></script>
     <title>movieGeek - Find your favorite movie</title>
   </head>
   <body>
@@ -71,43 +71,6 @@
     </div>
     <div class="container">
       <div class="filter-container">
-        <div name="genre" class="filterGenre filter">
-          <p>Any genre</p>
-          <!-- <option value="undefined" selected>Any genres</option>
-
-          <option value="Family">Family</option>
-          <option value="Romance">Romance</option>
-          <option value="Horror">Horror</option>
-          <option value="Animation">Animation</option>
-          <option value="History">History</option>
-          <option value="Crime">Crime</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Mystery">Mystery</option>
-          <option value="Documentary">Documentary</option>
-          <option value="War">War</option> -->
-        </div>
-        <div class="filter-dropdown dropdown hidden">
-          <div class="filter-row">
-            <a data-genre="Drama">Drama</a>
-            <a data-genre="Comedy">Comedy</a>
-            <a data-genre="Action">Action</a>
-            <a data-genre="Thriller">Thriller</a>
-            <a data-genre="Fantasy">Fantasy</a>
-            <a data-genre="Science Fiction">Science Fiction</a>
-            <a data-genre="Family">Family</a>
-            <a data-genre="Romance">Romance</a>
-          </div>
-          <div class="filter-row">
-            <a data-genre="Horror">Horror</a>
-            <a data-genre="Animation">Animation</a>
-            <a data-genre="War">War</a>
-            <a data-genre="Documentary">Documentary</a>
-            <a data-genre="Mystery">Mystery</a>
-            <a data-genre="Adventure">Adventure</a>
-            <a data-genre="Crime">Crime</a>
-            <a data-genre="History">History</a>
-          </div>
-        </div>
         <div name="sort" id="" class="sortFilter filter"><p>Sort By</p></div>
         <div class="sort-dropdown dropdown hidden">
           <a data-sort="undefined">Sort by</a>
@@ -143,6 +106,20 @@
         </div> -->
       </div>
     </div>
+    <script>
+      (function (d, s, id) {
+        var js,
+          stags = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+          return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src =
+          'https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js';
+        stags.parentNode.insertBefore(js, stags);
+      })(document, 'script', 'imdb-rating-api');
+    </script>
     <div class="pagination">
       <img src="/src/img/leftarrow.svg" alt="" class="prevpage" />
       <p><span class="page">1</span>. page</p>

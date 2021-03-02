@@ -1,12 +1,216 @@
+const contentContainer = document.querySelector('.content');
+let recommendedContainer;
+let urlMedia = window.location.hash.slice(
+  window.location.hash.indexOf('/') + 1
+);
+let urlID = window.location.hash.slice(1, window.location.hash.indexOf('/'));
 const renderFullMovieInfo = async function (movieID) {
+  contentContainer.innerHTML = '';
+  urlMedia = window.location.hash.slice(window.location.hash.indexOf('/') + 1);
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieID}?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US`
+    `https://api.themoviedb.org/3/${urlMedia}/${movieID}?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US`
   );
   const data = await res.json();
-  console.log(data.title);
+  insertMovieContent(data);
+  // fetchRecommendedMovies();
+};
+
+const insertMovieContent = async function (movie) {
+  let IMDbID = undefined;
+  if (urlMedia === 'tv') IMDbID = await fetchIMDbID();
+  const hoursRuntime = Math.floor(movie.runtime / 60) || 0;
+  const minutesRuntime =
+    movie.runtime - 60 * hoursRuntime || movie.episode_run_time[0];
+  const recommended = await fetchRecommendedMovies(movie.id, urlMedia);
+  const tagline = movie.tagline === '' ? '' : `"${movie.tagline}"`;
+  const IMDbLink = movie.imdb_id ? `` : '';
+
+  const releaseDate = movie.release_date
+    ? movie.release_date.slice(0, 4)
+    : movie.first_air_date.slice(0, 4);
+  const trailerKey = await fetchTrailer(movie, urlMedia);
+  const html = `
+  <div class="container movie-info">
+        <div class="poster">
+        <img src=${
+          movie.poster_path
+            ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+            : `/src/img/defaultposter.png`
+        } alt="" />
+          <a href="https://www.youtube.com/watch?v=${trailerKey}" class="trailer"
+            >Watch Trailer</a
+          >
+        </div>
+        <div class="details">
+          <h1 class="title">${
+            movie.title || movie.original_name
+          }<span>(${releaseDate})</span></h1>
+          <div class="genre">
+          ${displayGenres(movie)}
+            <a class="time">${hoursRuntime}h ${minutesRuntime}min</a>
+          </div>
+          <p class="overview">${movie.overview}</p>
+          <h3 class="tagline">${tagline}</h3>
+          <div class="review">
+            <span
+              class="imdbRatingPlugin"
+              data-user="ur129890334"
+              data-title="${movie.imdb_id || IMDbID}"
+              data-style="p3"
+              ><a href="https://www.imdb.com/title/${
+                movie.imdb_id || IMDbID
+              }/?ref_=plg_rt_1"
+                ><img
+                  src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"
+                  alt=" The Godfather
+          (1972) on IMDb"
+                /> </a
+            ></span>
+            <div class="tmdb">
+              <img src="/src/img/tmdb.jpg" alt="" class="tmdb-logo" />
+              <p class="vote">${movie.vote_average}/10 <span class="spanVote">${
+    movie.vote_count
+  } votes</span></p>
+            </div>
+          </div>
+          <div class="redirect">
+            <a href="${
+              movie.homepage || `/index.html`
+            }" class="homepage">Homepage</a>
+            ${IMDbLink}
+            <a href=https://www.imdb.com/title/${
+              movie.imdb_id || IMDbID
+            } class="imdb">IMDb</a>
+          </div>
+        </div>
+      </div>
+        <div class="container cast">
+        <h1>Cast</h1>
+        <section class="slider owl-carousel">
+          <div class="card">
+            <div class="img">
+              <img src="/src/img/cast.png" alt="" />
+            </div>
+            <div class="content">
+              <p>
+                <span>Marlon Brando</span>
+                <br />
+                Don Vito Corleone
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>  
+        </section>
+        <div class="container recommended">
+          <h1>Recommended</h1>
+          <div class="row">
+          ${recommended}
+          </div>
+        </div>
+      </div>
+  `;
+  document.title = `${movie.title || movie.name} (${releaseDate}) - movieGeek`;
+  contentContainer.insertAdjacentHTML('afterbegin', html);
+  imdbPlugin(document, 'script', 'imdb-rating-api');
+  sliderFunctionality();
+
+  document
+    .querySelector('.recommended')
+    .addEventListener('click', renderRecommendedMovie);
+};
+
+const renderRecommendedMovie = function (e) {
+  if (e.target === this) return;
+  const recommID = +e.target.closest('.col-md-2').dataset.id;
+  const recommMedia = e.target.closest('.col-md-2').dataset.media;
+  window.location.hash = `${recommID}/${recommMedia}`;
+  renderFullMovieInfo(recommID, recommMedia);
+};
+
+const sliderFunctionality = function () {
+  $('.slider').owlCarousel({
+    loop: true,
+    autoplay: true,
+    autoplayTimeout: 4000,
+    autoplayHoverPause: true,
+    dotsEach: true,
+    responsive: {
+      1100: { items: 4, nav: false },
+      800: { items: 3, nav: false },
+      550: { items: 2, nav: false },
+      300: { items: 1, nav: false },
+    },
+  });
+};
+
+const displayGenres = function (movie) {
+  const genre = movie.genres.map(gen => `<a>${gen.name}</a>`);
+  return genre.join('');
+};
+
+const fetchTrailer = async function (movie, media) {
+  try {
+    const res = await fetch(
+      `https://api.themoviedb.org/3/${media}/${movie.id}/videos?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US`
+    );
+    const data = await res.json();
+    if (!data.results[0]) throw new Error('No trailers found!');
+    let youtubeTrailer = data.results.find(res =>
+      Object.values(res).includes('Trailer')
+    );
+    if (!youtubeTrailer) youtubeTrailer = data.results[0].key;
+    return youtubeTrailer.key;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const fetchIMDbID = async function () {
+  urlID = window.location.hash.slice(1, window.location.hash.indexOf('/'));
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${urlID}/external_ids?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US`
+  );
+  const data = await res.json();
+  console.log(data);
+  return data.imdb_id;
+};
+
+const fetchRecommendedMovies = async function (movieID, media) {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/${media}/${movieID}/recommendations?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US&page=1`
+  );
+  const data = await res.json();
+  const allRecommendations = data.results;
+  const recommendations = allRecommendations.filter(
+    recc => allRecommendations.indexOf(recc) < 6
+  );
+  const displayRecommended = recommendations.map(recc => {
+    return `<div class="col-md-2 box-container" data-id="${
+      recc.id
+    }" data-media=${recc.media_type || media}>
+    <img src=${
+      recc.poster_path
+        ? `https://image.tmdb.org/t/p/w300${recc.poster_path}`
+        : `/src/img/defaultposter.png`
+    } alt="" />
+      <h2>${recc.title || recc.name}</h2>
+    </div>`;
+  });
+  return displayRecommended.join('');
+};
+
+const imdbPlugin = function (d, s, id) {
+  let js,
+    stags = d.getElementsByTagName(s)[0];
+
+  js = d.createElement(s);
+  js.id = id;
+  js.src =
+    'https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js';
+  stags.parentNode.insertBefore(js, stags);
 };
 
 document.querySelector('.logo').addEventListener('click', function () {
   window.open('../../index.html', '_self');
 });
-renderFullMovieInfo(window.location.hash.slice(1));
+document.addEventListener('loadedmetadata', renderFullMovieInfo(urlID));

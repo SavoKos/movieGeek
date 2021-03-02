@@ -1,0 +1,478 @@
+@import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Passion+One&family=Raleway:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Passion+One&family=Raleway:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Passion+One&family=Raleway:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Passion+One&family=Raleway:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mouse+Memoirs&family=Passion+One&family=Raleway:wght@300;400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Raleway';
+}
+
+body {
+  font-size: 62.5%;
+  background-color: #232323;
+  color: #ebebeb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Raleway';
+}
+
+body {
+  font-size: 62.5%;
+  background-color: #232323;
+  color: #ebebeb;
+}
+
+.nav__bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.nav__bar .logo {
+  cursor: pointer;
+}
+
+.nav__bar form {
+  width: 100%;
+}
+
+.nav__bar .nav__links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav__bar .nav__links .movie-link:hover .movie-dropdown,
+.nav__bar .nav__links .tvshows__link:hover + .tvshow-dropdown,
+.nav__bar .nav__links .dropdown:hover {
+  display: block;
+}
+
+.nav__bar .nav__links .movie-link,
+.nav__bar .nav__links .tvshow-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.nav__bar .nav__links .movie-dropdown,
+.nav__bar .nav__links .tvshow-dropdown {
+  display: none;
+}
+
+.nav__bar .nav__links .dropdown {
+  position: absolute;
+  background-color: #ebebeb;
+  border-radius: 20px;
+  padding: 2rem;
+  padding-left: 3rem;
+  text-align: center;
+  margin-top: 1.8rem;
+}
+
+.nav__bar .nav__links .dropdown hr {
+  background-color: #000;
+  opacity: 0.2;
+  width: 100%;
+}
+
+.nav__bar .nav__links .dropdown a {
+  color: #232323;
+  padding: 0;
+  cursor: pointer;
+}
+
+.nav__bar .search {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.nav__bar .search input {
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  padding-left: 20px;
+  outline: 0;
+  background-color: #ebebeb;
+  border-radius: 20px;
+  font-size: 20px;
+}
+
+.nav__bar .search button {
+  background-color: transparent;
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  border: 0;
+  outline: 0;
+}
+
+.nav__bar h1 {
+  color: #ebebeb;
+  font-family: 'Mouse Memoirs';
+}
+
+.nav__bar h1 span {
+  color: #ffc107;
+  font-family: 'Mouse Memoirs';
+}
+
+.nav__bar a {
+  color: #ebebeb;
+  font-size: 20px;
+  text-decoration: none;
+  margin-right: 60px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Raleway';
+}
+
+body {
+  font-size: 62.5%;
+  background-color: #232323;
+  color: #ebebeb;
+}
+
+a {
+  text-decoration: none;
+}
+
+.movie-info {
+  margin-top: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.movie-info .poster {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 20rem;
+}
+
+.movie-info .poster img {
+  width: 20rem;
+  border-radius: 20px;
+}
+
+.movie-info .poster .trailer {
+  font-size: 1.4rem;
+  border: 1px solid #ffc107;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.6rem 2.6rem;
+  border-radius: 2rem;
+  color: #ffc107;
+  margin: auto;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+.movie-info .details {
+  margin-left: 2rem;
+}
+
+.movie-info .details .title {
+  font-family: 'Passion One';
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.movie-info .details .title span {
+  color: #616161;
+  font-size: 1.6rem;
+  padding-left: 0.8rem;
+}
+
+.movie-info .details .tmdb {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1rem;
+}
+
+.movie-info .details .tmdb-logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.movie-info .details .review,
+.movie-info .details .tagline,
+.movie-info .details .overview {
+  margin-top: 2rem;
+}
+
+.movie-info .details .overview {
+  font-size: 1.4rem;
+}
+
+.movie-info .details .tagline {
+  color: #616161;
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.movie-info .details .genre {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.movie-info .details .genre a {
+  padding: 0 0.3rem;
+  color: #ffc107;
+  font-size: 0.9rem;
+  font-weight: bolder;
+}
+
+.movie-info .details .genre .time {
+  color: #ebebeb;
+  padding-left: 0.6rem;
+}
+
+.movie-info .details .redirect {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2rem;
+}
+
+.movie-info .details .redirect a {
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  font-weight: bolder;
+  border-radius: 2rem;
+  font-size: 1.3rem;
+}
+
+.movie-info .details .redirect .homepage {
+  background-color: red;
+  color: #ebebeb;
+  margin-right: 2rem;
+}
+
+.movie-info .details .redirect .imdb {
+  background-color: #ffc107;
+  color: #232323;
+}
+
+.movie-info .details .vote {
+  font-size: 17px;
+}
+
+.movie-info .details .vote .spanVote {
+  margin-left: 0.7rem;
+}
+
+.cast {
+  margin-top: 5rem;
+}
+
+.cast h1 {
+  font-family: 'Passion one';
+}
+
+.imdbRatingPlugin {
+  color: #ebebeb !important;
+  font-weight: lighter !important;
+}
+
+span.rating {
+  color: #ebebeb !important;
+  font-weight: lighter;
+}
+
+.ofTen {
+  color: #ebebeb !important;
+  font-weight: lighter !important;
+  font-size: 17px !important;
+  margin-right: 10px;
+}
+
+.votes {
+  color: #ebebeb !important;
+  font-weight: lighter !important;
+  font-size: 17px !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Raleway';
+}
+
+body {
+  font-size: 62.5%;
+  background-color: #232323;
+  color: #ebebeb;
+}
+
+.slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.slider a {
+  text-decoration: none;
+}
+
+.slider span {
+  color: #ebebeb;
+}
+
+.slider .card {
+  width: 15rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: #232323;
+  border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-card;
+          box-sizing: border-card;
+  padding-bottom: 20px;
+  margin-left: 50px;
+  z-index: 1000;
+  -webkit-card-shadow: 0px 0px 46px 3px rgba(0, 0, 0, 0.75);
+  -moz-card-shadow: 0px 0px 46px 3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 46px 3px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 46px 3px rgba(0, 0, 0, 0.75);
+}
+
+.slider .content {
+  padding: 5px 20px 5px 20px;
+}
+
+.slider .content p {
+  color: #cfdbd5;
+  padding: 15px 5px 10px 5px;
+  text-align: justify;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.slider .content span {
+  font-weight: bold;
+}
+
+.slider .title {
+  color: #fff;
+}
+
+.slider img {
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.slider .owl-dots {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.slider .owl-dots .owl-dot {
+  width: 10px;
+  margin: 0 0.3rem;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ebebeb;
+}
+
+.slider .owl-dots .active {
+  background-color: #ffc107 !important;
+}
+
+.recommended {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.recommended h1 {
+  font-family: 'Passion one';
+  margin-bottom: 3rem;
+}
+
+.recommended .box-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 20px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.recommended .box-container img {
+  width: 12rem;
+  border-radius: 20px;
+}
+
+.recommended .box-container h2 {
+  font-family: 'Passion one';
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+/*# sourceMappingURL=movieInfoMain.css.map */

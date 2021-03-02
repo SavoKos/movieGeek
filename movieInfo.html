@@ -4,73 +4,184 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/src/img/favicon.png" type="image/x-icon" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
-    <link rel="shortcut icon" href="/src/img/favicon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="src/scss/main.css" />
+    <link rel="stylesheet" href="src/scss/movieInfoMain.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
     <script defer src="src/js/movInfo.js"></script>
+
     <title>movieGeek - Find your favorite movie</title>
   </head>
   <body>
     <div class="container nav__bar">
       <h1 class="logo">movie<span>Geek</span></h1>
-      <div class="search">
-        <form action="">
-          <input
-            type="text"
-            placeholder="enter movie title..."
-            class="inputSearch"
-          />
-          <button type="submit">
-            <img src="src/img/search.svg" alt="Search" />
-          </button>
-        </form>
-      </div>
-      <div class="nav__links">
-        <div class="movie-link">
-          <a class="movies__link">Movies</a>
-          <div class="movie-dropdown dropdown">
-            <a class="media-dropdown" data-media="movie" data-type="top_rated"
-              >Top rated</a
-            >
-            <hr />
-            <a class="media-dropdown" data-media="movie" data-type="popular"
-              >Popular now</a
-            >
-            <hr />
-            <a class="media-dropdown" data-media="movie" data-type="upcoming"
-              >Upcoming</a
-            >
-            <hr />
-            <a class="media-dropdown" data-media="movie" data-type="now_playing"
-              >In theatres</a
-            >
-          </div>
-        </div>
-        <div class="tvshow-link">
-          <a class="tvshows__link">TV Shows</a>
-          <div class="tvshow-dropdown dropdown hidden">
-            <a class="media-dropdown" data-media="tv" data-type="top_rated"
-              >Top rated</a
-            >
-            <hr />
-            <a class="media-dropdown" data-media="tv" data-type="popular"
-              >Popular now</a
-            >
-            <hr />
-            <a class="media-dropdown" data-media="tv" data-type="airing_today"
-              >Airing Today</a
-            >
-          </div>
-        </div>
-      </div>
     </div>
-    <div class="container movie-info">
-      <p class="x"></p>
+    <div class="content">
+      <!-- <div class="container movie-info">
+        <div class="poster">
+          <img src="/src/img/poster.png" alt="" /><a class="trailer"
+            >Watch Trailer</a
+          >
+        </div>
+        <div class="details">
+          <h1 class="title">The Godfather<span>(2006)</span></h1>
+          <div class="genre">
+            <a>Drama</a>
+            <a>Crime</a>
+            <a>Thriller</a>
+            <a class="time">2h 45min</a>
+          </div>
+          <p class="overview">
+            An organized crime dynasty's aging patriarch transfers control of
+            his clandestine empire to his reluctant son.
+          </p>
+          <h3 class="tagline">"An offer you can't refuse"</h3>
+          <div class="review">
+            <span
+              class="imdbRatingPlugin"
+              data-user="ur129890334"
+              data-title="tt0068646"
+              data-style="p3"
+              ><a href="https://www.imdb.com/title/tt0068646/?ref_=plg_rt_1"
+                ><img
+                  src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"
+                  alt=" The Godfather
+          (1972) on IMDb"
+                /> </a
+            ></span>
+            <div class="tmdb">
+              <img src="/src/img/tmdb.jpg" alt="" class="tmdb-logo" />
+              <p>5.2/10</p>
+            </div>
+          </div>
+          <div class="redirect">
+            <a href="#" class="homepage">Homepage</a>
+            <a href="#" class="imdb">IMDb</a>
+          </div>
+        </div>
+      </div>
+      <div class="container cast">
+        <h1>Cast</h1>
+        <section class="slider owl-carousel">
+          <div class="card">
+            <div class="img">
+              <img src="/src/img/cast.png" alt="" />
+            </div>
+            <div class="content">
+              <p>
+                <span>Marlon Brando</span><br />
+                Don Vito Corleone
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="img">
+              <img src="/src/img/cast.png" alt="" />
+            </div>
+            <div class="content">
+              <p>
+                <span>Marlon Brando</span><br />
+                Don Vito Corleone
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="img">
+              <img src="/src/img/cast.png" alt="" />
+            </div>
+            <div class="content">
+              <p>
+                <span>Marlon Brando</span><br />
+                Don Vito Corleone
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="img">
+              <img src="/src/img/cast.png" alt="" />
+            </div>
+            <div class="content">
+              <p>
+                <span>Marlon Brando</span><br />
+                Don Vito Corleone
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="img">
+              <img src="/src/img/cast.png" alt="" />
+            </div>
+            <div class="content">
+              <p>
+                <span>Marlon Brando</span><br />
+                Don Vito Corleone
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="img">
+              <img src="/src/img/cast.png" alt="" />
+            </div>
+            <div class="content">
+              <p>
+                <span>Marlon Brando</span><br />
+                Don Vito Corleone
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="img">
+              <img src="/src/img/cast.png" alt="" />
+            </div>
+            <div class="content">
+              <p>
+                <span>Marlon Brando</span><br />
+                Don Vito Corleone
+              </p>
+            </div>
+          </div>
+        </section>
+      </div> -->
     </div>
   </body>
 </html>
+<!-- 
+<div class="container-fluid recommended">
+  <h1>Recommended</h1>
+  <div class="row">
+    <div class="col-md-2 box-container">
+      <img src="/src/img/cast.png" alt="" />
+      <h2>The Godfather</h2>
+    </div>
+    <div class="col-md-2 box-container">
+      <img src="/src/img/cast.png" alt="" />
+      <h2>The Godfather</h2>
+    </div>
+    <div class="col-md-2 box-container">
+      <img src="/src/img/cast.png" alt="" />
+      <h2>The Godfather</h2>
+    </div>
+    <div class="col-md-2 box-container">
+      <img src="/src/img/cast.png" alt="" />
+      <h2>The Godfather</h2>
+    </div>
+    <div class="col-md-2 box-container">
+      <img src="/src/img/cast.png" alt="" />
+      <h2>The Godfather</h2>
+    </div>
+    <div class="col-md-2 box-container">
+      <img src="/src/img/cast.png" alt="" />
+      <h2>The Godfather</h2>
+    </div>
+  </div>
+</div> -->

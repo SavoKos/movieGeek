@@ -1,0 +1,75 @@
+@import 'base';
+
+.slider {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+  }
+
+  span {
+    color: $white;
+  }
+
+  .card {
+    width: 15rem;
+    height: fit-content;
+    background-color: #232323;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-card;
+    padding-bottom: 20px;
+    margin-left: 50px;
+    z-index: 1000;
+    -webkit-card-shadow: 0px 0px 46px 3px rgba(0, 0, 0, 0.75);
+    -moz-card-shadow: 0px 0px 46px 3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 46px 3px rgba(0, 0, 0, 0.75);
+  }
+
+  .content {
+    padding: 5px 20px 5px 20px;
+
+    p {
+      color: #cfdbd5;
+      padding: 15px 5px 10px 5px;
+      text-align: justify;
+      font-weight: 300;
+      font-size: 1rem;
+    }
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .title {
+    color: #fff;
+  }
+
+  img {
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+
+  .owl-dots {
+    text-align: center;
+    margin-top: 1rem;
+
+    .owl-dot {
+      width: 10px;
+      margin: 0 0.3rem;
+      height: 10px;
+      border-radius: 50%;
+      background-color: $white;
+    }
+
+    .active {
+      background-color: $yellow !important;
+    }
+  }
+}
