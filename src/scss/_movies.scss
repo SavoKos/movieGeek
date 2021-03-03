@@ -1,6 +1,7 @@
 @import 'base';
 
 .movies {
+  min-height: 150vh;
   img {
     border-radius: 20px;
     cursor: pointer;

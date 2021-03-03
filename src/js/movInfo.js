@@ -101,7 +101,7 @@ const insertMovieContent = async function (movie) {
         </div>
       </div>
       <div class="modal-window hidden">
-      <div class="content">
+      <div class="content-modal">
         <img src="/src/img/close.svg" alt="" class="close-modal" />
         <iframe
           frameborder="0"
@@ -241,10 +241,16 @@ const modalWindowHandler = function () {
   const iframe = document.querySelector('iframe');
 
   window.scroll(0, 0);
-  iframe.src = trailerSrc;
   document.body.style.overflow = 'hidden';
   modalContainer.style.display = 'block';
   modalContainer.classList.remove('hidden');
+  if (!trailerSrc) {
+    const noTrailer = document.createElement('h1');
+    noTrailer.textContent = 'No trailers found!';
+    document.querySelector('.content-modal').appendChild(noTrailer);
+    return;
+  }
+  iframe.src = trailerSrc;
 };
 
 const closeModal = function (e) {
@@ -285,3 +291,12 @@ document.addEventListener('loadedmetadata', renderFullMovieInfo(urlID));
 document.querySelector('.back').addEventListener('click', function () {
   window.open('/index.html', '_self');
 });
+
+const x = async function () {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/popular?api_key=7325ea7f7ce78a5adf1d879ccbbe0117`
+  );
+  const data = await res.json();
+  console.log(data);
+};
+x();

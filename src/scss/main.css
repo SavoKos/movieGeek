@@ -15,6 +15,7 @@ body {
   font-size: 62.5%;
   background-color: #232323;
   color: #ebebeb;
+  overflow-x: hidden;
 }
 
 .nav__bar {
@@ -154,6 +155,74 @@ body {
   margin-right: 60px;
 }
 
+.nav__bar .hamburger {
+  height: 2.3rem;
+  width: 2.3rem;
+  cursor: pointer;
+  display: none;
+}
+
+.nav__bar .hamburger-dropdown {
+  -webkit-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+  position: absolute;
+  right: 0%;
+  top: 5.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #ebebeb;
+  padding: 2rem;
+  border-radius: 20px 0 0 20px;
+}
+
+.nav__bar .hamburger-dropdown .movie-link,
+.nav__bar .hamburger-dropdown .tvshow-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.nav__bar .hamburger-dropdown .tvshow-dropdown,
+.nav__bar .hamburger-dropdown .movie-dropdown {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 10rem;
+}
+
+.nav__bar .hamburger-dropdown a {
+  margin-right: 0;
+  color: #232323;
+  text-align: center;
+  cursor: pointer;
+}
+
+.nav__bar .hidden {
+  -webkit-transform: translateX(30rem);
+          transform: translateX(30rem);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -166,6 +235,7 @@ body {
   font-size: 62.5%;
   background-color: #232323;
   color: #ebebeb;
+  overflow-x: hidden;
 }
 
 * {
@@ -180,6 +250,7 @@ body {
   font-size: 62.5%;
   background-color: #232323;
   color: #ebebeb;
+  overflow-x: hidden;
 }
 
 .filter-container {
@@ -252,6 +323,9 @@ body {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .filter-container .filter p {
@@ -263,6 +337,11 @@ body {
   background-color: #ebebeb;
   border-radius: 1rem;
   font-size: 1.2rem;
+}
+
+.filter-container .filter option {
+  color: #232323;
+  padding: 1rem;
 }
 
 * {
@@ -277,6 +356,11 @@ body {
   font-size: 62.5%;
   background-color: #232323;
   color: #ebebeb;
+  overflow-x: hidden;
+}
+
+.movies {
+  min-height: 150vh;
 }
 
 .movies img {
@@ -383,5 +467,116 @@ body {
 
 .pagination img {
   cursor: pointer;
+}
+
+@media screen and (max-width: 1400px) {
+  .movies img {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .nav__bar .logo {
+    font-size: 2rem;
+  }
+  .nav__bar a {
+    font-size: 1rem;
+    margin-right: 1rem;
+  }
+  .movies .movie-review {
+    width: 150px;
+  }
+  .movies .movie-review .genre {
+    font-size: 0.9rem;
+    margin-right: 0.5rem;
+  }
+  .movies .movie-review .review h6 {
+    font-size: 0.9rem;
+  }
+  .movies img {
+    width: 150px;
+  }
+  .movies .movie-details {
+    margin-top: 0.7rem;
+    width: 150px;
+  }
+  .movies .movie-details span {
+    font-size: 1rem;
+  }
+  .movies .movie-title {
+    width: 150px;
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movies img {
+    width: 300px;
+  }
+  .movies .col-md-3 {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .movies .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 0;
+  }
+  .movies .searched {
+    text-align: center;
+    margin: 4rem 0 -1rem 0;
+  }
+  .movies .movie-details {
+    width: 300px;
+    margin-top: 1.5rem;
+  }
+  .movies .movie-details span {
+    font-size: 1.1rem;
+  }
+  .movies .movie-details .movie-title {
+    width: 300px;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .movies .movie-review {
+    width: 300px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .movies .movie-review .genre {
+    font-size: 15px;
+    margin-right: 1.5rem;
+  }
+  .movies .movie-review .review h6 {
+    font-size: 1rem;
+  }
+  .nav__bar .logo {
+    font-size: 1rem;
+    margin-right: 1rem;
+  }
+  .nav__bar .nav__links {
+    display: none !important;
+  }
+  .nav__bar .hamburger-menu {
+    margin-left: 1rem;
+  }
+  .nav__bar .hamburger-menu .hamburger {
+    display: block !important;
+  }
+  .nav__bar .search input {
+    font-size: 0.8rem;
+  }
+  .nav__bar .search button {
+    top: 10px;
+  }
 }
 /*# sourceMappingURL=main.css.map */

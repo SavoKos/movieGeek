@@ -116,4 +116,47 @@
     text-decoration: none;
     margin-right: 60px;
   }
+
+  .hamburger {
+    height: 2.3rem;
+    width: 2.3rem;
+    cursor: pointer;
+    display: none;
+  }
+
+  .hamburger-dropdown {
+    transition: all ease 0.5s;
+    position: absolute;
+    right: 0%;
+    top: 5.5rem;
+    display: flex;
+    background-color: $white;
+    padding: 2rem;
+    border-radius: 20px 0 0 20px;
+    .movie-link,
+    .tvshow-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .tvshow-dropdown,
+    .movie-dropdown {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 10rem;
+    }
+    a {
+      margin-right: 0;
+      color: $gray;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+  .hidden {
+    transform: translateX(30rem);
+  }
 }

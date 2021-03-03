@@ -12,7 +12,7 @@
     />
     <link rel="shortcut icon" href="/src/img/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="src/scss/main.css" />
-    <script type="module" defer src="/src/js/main.js"></script>
+    <script defer src="/src/js/main.js"></script>
     <title>movieGeek - Find your favorite movie</title>
   </head>
   <body>
@@ -68,27 +68,57 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="container">
-      <div class="filter-container">
-        <div name="sort" id="" class="sortFilter filter"><p>Sort By</p></div>
-        <div class="sort-dropdown dropdown hidden">
-          <a data-sort="undefined">Sort by</a>
-          <hr />
-          <a data-genre="Popularity">Popularity</a>
-          <hr />
-          <a data-genre="Release year">Release year</a>
-          <hr />
-          <a data-genre="Rating">Rating</a>
-          <hr />
+      <div class="hamburger-menu">
+        <img src="/src/img/hamburger.svg" alt="" class="hamburger" />
+        <div class="hamburger-dropdown dropdown hidden">
+          <div class="movie-link">
+            <a class="movies__link"><b>Movies</b></a>
+            <div class="movie-dropdown dropdown">
+              <a class="media-dropdown" data-media="movie" data-type="top_rated"
+                >Top rated</a
+              >
+              <a class="media-dropdown" data-media="movie" data-type="popular"
+                >Popular now</a
+              >
+              <a class="media-dropdown" data-media="movie" data-type="upcoming"
+                >Upcoming</a
+              >
+              <a
+                class="media-dropdown"
+                data-media="movie"
+                data-type="now_playing"
+                >In theatres</a
+              >
+            </div>
+          </div>
+          <div class="tvshow-link">
+            <a class="tvshows__link"><b>TV Shows</b></a>
+            <div class="tvshow-dropdown dropdown">
+              <a class="media-dropdown" data-media="tv" data-type="top_rated"
+                >Top rated</a
+              >
+              <a class="media-dropdown" data-media="tv" data-type="popular"
+                >Popular now</a
+              >
+              <a class="media-dropdown" data-media="tv" data-type="airing_today"
+                >Airing Today</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <!-- <div class="container">
+      <div class="filter-container">
+        <select name="sort" class="filter">
+          <option value="">Rating</option>
+          <option value="">Release Year</option>
+        </select>
+      </div>
+    </div> -->
     <div class="container movies">
       <h3 class="searched">
-        <img src="/src/img/search.svg" alt="" /><span
-          class="searchedLabel"
-        ></span>
+        <span class="searchedLabel"></span>
       </h3>
       <div class="row container__display-movies">
         <!-- <div class="col-md-3">
@@ -120,11 +150,7 @@
         stags.parentNode.insertBefore(js, stags);
       })(document, 'script', 'imdb-rating-api');
     </script>
-    <div class="pagination">
-      <img src="/src/img/leftarrow.svg" alt="" class="prevpage" />
-      <p><span class="page">1</span>. page</p>
-      <img src="/src/img/rightarrow.svg" alt="" class="nextpage" />
-    </div>
+    <div class="footer"></div>
   </body>
 </html>
 

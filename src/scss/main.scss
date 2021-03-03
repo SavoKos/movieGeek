@@ -2,3 +2,127 @@
 @import 'base';
 @import 'filter';
 @import 'movies';
+
+@media screen and (max-width: 1400px) {
+  .movies img {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .nav__bar {
+    .logo {
+      font-size: 2rem;
+    }
+
+    a {
+      font-size: 1rem;
+      margin-right: 1rem;
+    }
+  }
+  .movies {
+    .movie-review {
+      width: 150px;
+      .genre {
+        font-size: 0.9rem;
+        margin-right: 0.5rem;
+      }
+      .review h6 {
+        font-size: 0.9rem;
+      }
+    }
+
+    img {
+      width: 150px;
+    }
+    .movie-details {
+      margin-top: 0.7rem;
+      width: 150px;
+      span {
+        font-size: 1rem;
+      }
+    }
+    .movie-title {
+      width: 150px;
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movies {
+    img {
+      width: 300px;
+    }
+    .col-md-3 {
+      width: fit-content;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .searched {
+      text-align: center;
+      margin: 4rem 0 -1rem 0;
+    }
+
+    .movie-details {
+      width: 300px;
+      margin-top: 1.5rem;
+      span {
+        font-size: 1.1rem;
+      }
+      .movie-title {
+        width: 300px;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    .movie-review {
+      width: 300px;
+      display: flex;
+      justify-content: center;
+
+      .genre {
+        font-size: 15px;
+        margin-right: 1.5rem;
+      }
+      .review h6 {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .nav__bar {
+    .logo {
+      font-size: 1rem;
+      margin-right: 1rem;
+    }
+
+    .nav__links {
+      display: none !important;
+    }
+
+    .hamburger-menu {
+      margin-left: 1rem;
+
+      .hamburger {
+        display: block !important;
+      }
+    }
+
+    .search {
+      input {
+        font-size: 0.8rem;
+      }
+
+      button {
+        top: 10px;
+      }
+    }
+  }
+}

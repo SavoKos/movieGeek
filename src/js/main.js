@@ -1,40 +1,18 @@
 const movieContainer = document.querySelector('.container__display-movies');
 const nextPage = document.querySelector('.nextpage');
 const prevPage = document.querySelector('.prevpage');
-const currentPageContainer = document.querySelector('.page');
+const footer = document.querySelector('.footer');
 const search = document.querySelector('.inputSearch');
 const searched = document.querySelector('.searchedLabel');
 const filterContainer = document.querySelector('.filter-container');
 const filterDropdown = document.querySelector('.filter-dropdown');
+let page = 0;
 
+let lastElementMovie;
 let genre = undefined;
 let currentTab = `movie/popular`;
 let movieHashTitle = window.location.hash;
 if (movieHashTitle.length > 0) currentTab = movieHashTitle;
-
-const goToNextPage = function () {
-  let page = +currentPageContainer.textContent;
-  if (
-    movieContainer.firstElementChild === null ||
-    movieContainer.firstElementChild.className === 'search-failed'
-  ) {
-    page = 0;
-  }
-
-  fetchMovies(page + 1, genre);
-  currentPageContainer.textContent = `${page + 1}`;
-  //     const currentPage = +currentPageContainer.textContent.slice(0, 1);
-  //   fetchMovies(3);
-  //   currentPageContainer.textContent = currentPage + 1;
-  //   return;
-};
-
-const goToPrevPage = function () {
-  let page = +currentPageContainer.textContent.slice(0, 1);
-  if (page < 2) return;
-  fetchMovies(page - 1, genre);
-  currentPageContainer.textContent = `${page - 1}`;
-};
 
 const displayHomePage = function () {
   window.location.href = '';
@@ -80,10 +58,8 @@ const fetchMovieGenre = async function (movie) {
 
 const renderMovie = async function (movie, def = 'Genre') {
   try {
-    // abort render if movie doesn't have image
     let title = '';
     let releaseDate = '';
-
     if (movie.media_type === 'tv') {
       title = movie.name;
       releaseDate = movie.first_air_date.slice(0, 4);
@@ -125,9 +101,10 @@ const renderMovie = async function (movie, def = 'Genre') {
   }
 };
 
-// fetching movies on load, on filter, dropdown menu
-const fetchMovies = async function (page = 1, genre = 'undefined') {
+// fetching movies on load, dropdown menu
+const fetchMovies = async function (genre = 'undefined') {
   try {
+    page++;
     let res = '';
     // checking if movie is already searched
     if (!searched) return;
@@ -149,22 +126,23 @@ const fetchMovies = async function (page = 1, genre = 'undefined') {
     }
     const data = await res.json();
     const movies = data.results;
-
-    movieContainer.innerHTML = '';
+    console.log(movies);
+    // movieContainer.innerHTML = '';
     movies.forEach(mov => {
       // setting media_type because tv doesn't have it by default
       if (currentTab.includes('tv')) mov.media_type = 'tv';
       renderMovie(mov);
     });
+    fetchNewMovieOnScroll();
   } catch (error) {
     console.log(error);
   }
 };
 
-fetchMovies();
+fetchMovies(page);
 
 // used just for searching movies
-export const searchMovie = async function (e, mov = undefined, page = 1) {
+const searchMovie = async function (e, mov = undefined, page = 1) {
   try {
     if (e) e.preventDefault();
     if (!search.value) {
@@ -181,7 +159,7 @@ export const searchMovie = async function (e, mov = undefined, page = 1) {
     const movies = data.results;
     console.log(movies);
     movieContainer.innerHTML = '';
-    currentPageContainer.textContent = `${page}`;
+    footer.textContent = `${page}`;
     if (movies.length < 1) {
       movieContainer.innerHTML = `<h1 class="search-failed">No results found. Try again!<h1>`;
       return;
@@ -197,6 +175,33 @@ export const searchMovie = async function (e, mov = undefined, page = 1) {
   }
 };
 
+const fetchNewMovieOnScroll = function () {
+  const options = {
+    root: null,
+    rootMargin: '500px',
+    threshold: 0.1,
+  };
+  const callback = function (entries, _) {
+    entries.forEach(ent => {
+      console.log(ent);
+      if (ent.isIntersecting) {
+        fetchMovies();
+        observer.unobserve(footer);
+      }
+    });
+  };
+  setTimeout(() => {
+    observer.observe(footer);
+  }, 2000);
+  const observer = new IntersectionObserver(callback, options);
+};
+
+const hamburgerMenuHandler = function () {
+  const hamburgerDropdown = document
+    .querySelector('.hamburger-dropdown')
+    .classList.toggle('hidden');
+};
+
 const renderFullMovieInfo = async function (movieID, media) {
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/${movieID}?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US`
@@ -207,8 +212,6 @@ const renderFullMovieInfo = async function (movieID, media) {
 };
 
 document.querySelector('form').addEventListener('submit', searchMovie);
-if (nextPage) nextPage.addEventListener('click', goToNextPage);
-if (prevPage) prevPage.addEventListener('click', goToPrevPage);
 document.querySelector('.logo').addEventListener('click', displayHomePage);
 
 document.querySelectorAll('.media-dropdown').forEach(dropdown => {
@@ -222,6 +225,10 @@ document.querySelectorAll('.media-dropdown').forEach(dropdown => {
     );
   });
 });
+
+document
+  .querySelector('.hamburger-menu')
+  .addEventListener('click', hamburgerMenuHandler);
 
 if (movieContainer)
   movieContainer.addEventListener('click', function (e) {

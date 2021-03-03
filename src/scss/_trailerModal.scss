@@ -11,7 +11,7 @@
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);
   transition: all ease 0.5s;
-  .content {
+  .content-modal {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -20,6 +20,13 @@
     transform: translate(-50%, -50%);
     background-color: $gray;
     padding: 1rem 2rem;
+
+    h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
     iframe {
       width: 1000px;
