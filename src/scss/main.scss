@@ -50,6 +50,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  * {
+    overflow-y: hidden;
+  }
   .movies {
     img {
       width: 300px;
