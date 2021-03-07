@@ -7,7 +7,6 @@ const searched = document.querySelector('.searchedLabel');
 const filterContainer = document.querySelector('.filter-container');
 const filterDropdown = document.querySelector('.filter-dropdown');
 let page = 0;
-
 let lastElementMovie;
 let genre = undefined;
 let currentTab = `movie/popular`;
@@ -160,15 +159,15 @@ const searchMovie = async function (e, mov = undefined, page = 1) {
     console.log(movies);
     movieContainer.innerHTML = '';
     footer.textContent = `${page}`;
+    searched.textContent = `🔎 ${window.location.hash.slice(1)}`;
+    searched.dataset.type = `${window.location.hash}`;
+    window.location.hash = search.value;
+    currentTab = `#${search.value}`;
     if (movies.length < 1) {
       movieContainer.innerHTML = `<h1 class="search-failed">No results found. Try again!<h1>`;
       return;
     }
     movies.forEach(mov => renderMovie(mov));
-    window.location.hash = search.value;
-    currentTab = `#${search.value}`;
-    searched.textContent = `🔎 ${window.location.hash.slice(1)}`;
-    searched.dataset.type = `${window.location.hash}`;
     search.value = '';
   } catch (error) {
     console.log(error);

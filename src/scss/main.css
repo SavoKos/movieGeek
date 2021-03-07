@@ -223,7 +223,7 @@ body {
   cursor: pointer;
 }
 
-.nav__bar .hidden {
+.nav__bar .hamburger-dropdown.hidden {
   -webkit-transform: translateX(30rem);
           transform: translateX(30rem);
 }
@@ -487,6 +487,10 @@ body {
 
 .pagination img {
   cursor: pointer;
+}
+
+footer {
+  opacity: 0;
 }
 
 @media screen and (max-width: 1400px) {

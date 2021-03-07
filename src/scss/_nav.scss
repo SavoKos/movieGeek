@@ -156,7 +156,8 @@
       cursor: pointer;
     }
   }
-  .hidden {
+
+  .hamburger-dropdown.hidden {
     transform: translateX(30rem);
   }
 }
