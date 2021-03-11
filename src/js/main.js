@@ -9,6 +9,7 @@ const filterDropdown = document.querySelector('.filter-dropdown');
 let page = 0;
 let lastElementMovie;
 let genre = undefined;
+let urlMedia = '';
 let currentTab = `movie/popular`;
 let movieHashTitle = window.location.hash;
 if (movieHashTitle.length > 0) currentTab = movieHashTitle;
@@ -57,6 +58,8 @@ const fetchMovieGenre = async function (movie) {
 
 const renderMovie = async function (movie, def = 'Genre') {
   try {
+    let IMDbID = undefined;
+    if (urlMedia === 'tv') IMDbID = await fetchIMDbID();
     let title = '';
     let releaseDate = '';
     if (movie.media_type === 'tv') {
@@ -87,9 +90,19 @@ const renderMovie = async function (movie, def = 'Genre') {
       <div class="movie-review">
         <h4 class="genre">${genre || def}</h4>
         <div class="review">
-          <h6>TMDb </h6>
-          <img src="/src/img/star.svg" alt="" class="star" />
-          <h6>${movie.vote_average}</h6>
+        <span
+        class="imdbRatingPlugin"
+        data-user="ur129890334"
+        data-title="${movie.imdb_id || IMDbID}"
+        data-style="p3"
+        ><a href="https://www.imdb.com/title/${
+          movie.imdb_id || IMDbID
+        }/?ref_=plg_rt_1"
+          ><img
+            src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"
+            alt=""
+          /> </a
+      ></span>
         </div>
       </div>
     </div>
@@ -105,6 +118,8 @@ const fetchMovies = async function (genre = 'undefined') {
   try {
     page++;
     let res = '';
+    urlMedia = currentTab.slice(0, currentTab.indexOf('/'));
+    console.log(urlMedia);
     // checking if movie is already searched
     if (!searched) return;
     if (currentTab.includes('#')) {
@@ -180,6 +195,17 @@ const fetchNewMovieOnScroll = function () {
     rootMargin: '500px',
     threshold: 0.1,
   };
+
+  const fetchIMDbID = async function () {
+    urlID = window.location.hash.slice(1, window.location.hash.indexOf('/'));
+    const res = await fetch(
+      `https://api.themoviedb.org/3/tv/${urlID}/external_ids?api_key=${APIKey}&language=en-US`
+    );
+    const data = await res.json();
+    console.log(data);
+    return data.imdb_id;
+  };
+
   const callback = function (entries, _) {
     entries.forEach(ent => {
       console.log(ent);

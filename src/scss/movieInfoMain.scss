@@ -4,3 +4,104 @@
 @import 'slider';
 @import 'recommended';
 @import 'trailerModal';
+
+@media only screen and (max-width: 1400px) {
+  .recommended .box-container img {
+    width: 7rem;
+  }
+
+  .nav__bar .back {
+    left: 3rem;
+
+    h1 {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media only screen and(max-width:850px) {
+  .recommended .box-container h2 {
+    font-size: 1rem;
+  }
+
+  .movie-info {
+    .poster {
+      img {
+        width: 10rem;
+      }
+      .trailer {
+        font-size: 0.7rem;
+        padding: 0.6rem 1rem;
+        margin-top: 1rem;
+      }
+    }
+    .details {
+      margin-left: 2rem;
+      .genre a {
+        font-size: 0.7rem;
+      }
+      .overview {
+        text-align: justify;
+        font-size: 1rem;
+        margin-top: 1.5rem;
+      }
+      .tagline {
+        font-size: 1rem;
+      }
+      .vote {
+        font-size: 0.9rem;
+      }
+      .title {
+        font-size: 1.5rem;
+        span {
+          font-size: 1rem;
+        }
+      }
+      .redirect a {
+        padding: 0.6rem 1rem;
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  .review {
+    img {
+      width: 30px;
+    }
+    .votes {
+      font-size: 0.9rem !important;
+    }
+    .imdbRatingStyle3 {
+      font-size: 0.9rem;
+    }
+    .ofTen {
+      font-size: 0.9rem !important;
+    }
+  }
+}
+
+@media only screen and(max-width:768px) {
+  .recommended h1,
+  .cast h1 {
+    text-align: center;
+  }
+
+  .nav__bar .back h1 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .movie-info {
+    flex-direction: column;
+
+    .poster {
+      width: unset;
+      margin: auto;
+      margin-bottom: 5rem;
+      img {
+        width: 15rem;
+      }
+    }
+  }
+}

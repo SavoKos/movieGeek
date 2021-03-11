@@ -665,4 +665,96 @@ body {
   opacity: 0;
   visibility: hidden;
 }
+
+@media only screen and (max-width: 1400px) {
+  .recommended .box-container img {
+    width: 7rem;
+  }
+  .nav__bar .back {
+    left: 3rem;
+  }
+  .nav__bar .back h1 {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .recommended .box-container h2 {
+    font-size: 1rem;
+  }
+  .movie-info .poster img {
+    width: 10rem;
+  }
+  .movie-info .poster .trailer {
+    font-size: 0.7rem;
+    padding: 0.6rem 1rem;
+    margin-top: 1rem;
+  }
+  .movie-info .details {
+    margin-left: 2rem;
+  }
+  .movie-info .details .genre a {
+    font-size: 0.7rem;
+  }
+  .movie-info .details .overview {
+    text-align: justify;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
+  .movie-info .details .tagline {
+    font-size: 1rem;
+  }
+  .movie-info .details .vote {
+    font-size: 0.9rem;
+  }
+  .movie-info .details .title {
+    font-size: 1.5rem;
+  }
+  .movie-info .details .title span {
+    font-size: 1rem;
+  }
+  .movie-info .details .redirect a {
+    padding: 0.6rem 1rem;
+    font-size: 0.7rem;
+  }
+  .review img {
+    width: 30px;
+  }
+  .review .votes {
+    font-size: 0.9rem !important;
+  }
+  .review .imdbRatingStyle3 {
+    font-size: 0.9rem;
+  }
+  .review .ofTen {
+    font-size: 0.9rem !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .recommended h1,
+  .cast h1 {
+    text-align: center;
+  }
+  .nav__bar .back h1 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .movie-info {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .movie-info .poster {
+    width: unset;
+    margin: auto;
+    margin-bottom: 5rem;
+  }
+  .movie-info .poster img {
+    width: 15rem;
+  }
+}
 /*# sourceMappingURL=movieInfoMain.css.map */

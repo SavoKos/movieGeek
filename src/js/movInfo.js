@@ -64,8 +64,7 @@ const insertMovieContent = async function (movie) {
               }/?ref_=plg_rt_1"
                 ><img
                   src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"
-                  alt=" The Godfather
-          (1972) on IMDb"
+                  alt=""
                 /> </a
             ></span>
             <div class="tmdb">
