@@ -34,11 +34,17 @@
     align-items: center;
     width: 238px;
 
+    h6 {
+      margin-top: 0.5rem;
+    }
     .star {
       width: 15px;
       height: 15px;
       margin: 5px;
-      margin-bottom: 12px;
+    }
+
+    .tmdb {
+      width: 25px;
     }
   }
 

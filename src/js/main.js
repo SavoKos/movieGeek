@@ -90,19 +90,9 @@ const renderMovie = async function (movie, def = 'Genre') {
       <div class="movie-review">
         <h4 class="genre">${genre || def}</h4>
         <div class="review">
-        <span
-        class="imdbRatingPlugin"
-        data-user="ur129890334"
-        data-title="${movie.imdb_id || IMDbID}"
-        data-style="p3"
-        ><a href="https://www.imdb.com/title/${
-          movie.imdb_id || IMDbID
-        }/?ref_=plg_rt_1"
-          ><img
-            src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/images/imdb_37x18.png"
-            alt=""
-          /> </a
-      ></span>
+          <img src="/src/img/tmdb.jpg" alt="" class="tmdb" />
+          <img src="/src/img/star.svg" alt="" class="star" />
+          <h6>${movie.vote_average}</h6>
         </div>
       </div>
     </div>
@@ -123,7 +113,10 @@ const fetchMovies = async function (genre = 'undefined') {
     // checking if movie is already searched
     if (!searched) return;
     if (currentTab.includes('#')) {
-      searched.textContent = `🔎 ${window.location.hash.slice(1)}`;
+      searched.textContent = `🔎 ${window.location.hash
+        .slice(1)
+        .split('+')
+        .join(' ')}`;
       searched.dataset.type = `${window.location.hash}`;
       res = await fetch(
         `https://api.themoviedb.org/3/search/multi?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&page=${page}&query=${
@@ -135,7 +128,10 @@ const fetchMovies = async function (genre = 'undefined') {
         `https://api.themoviedb.org/3/${currentTab}?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&page=${page}`
       );
 
-      searched.textContent = `${currentTab}`;
+      searched.textContent = `${window.location.hash
+        .slice(1)
+        .split('+')
+        .join('')}`;
       searched.dataset.type = `${currentTab}`;
     }
     const data = await res.json();
@@ -174,9 +170,13 @@ const searchMovie = async function (e, mov = undefined, page = 1) {
     console.log(movies);
     movieContainer.innerHTML = '';
     footer.textContent = `${page}`;
-    searched.textContent = `🔎 ${window.location.hash.slice(1)}`;
     searched.dataset.type = `${window.location.hash}`;
-    window.location.hash = search.value;
+    window.location.hash = search.value.split(' ').join('+');
+    console.log(window.location.hash.slice(1).split('+').join('  '));
+    searched.textContent = `🔎 ${window.location.hash
+      .slice(1)
+      .split('+')
+      .join('  ')}`;
     currentTab = `#${search.value}`;
     if (movies.length < 1) {
       movieContainer.innerHTML = `<h1 class="search-failed">No results found. Try again!<h1>`;
@@ -194,16 +194,6 @@ const fetchNewMovieOnScroll = function () {
     root: null,
     rootMargin: '500px',
     threshold: 0.1,
-  };
-
-  const fetchIMDbID = async function () {
-    urlID = window.location.hash.slice(1, window.location.hash.indexOf('/'));
-    const res = await fetch(
-      `https://api.themoviedb.org/3/tv/${urlID}/external_ids?api_key=${APIKey}&language=en-US`
-    );
-    const data = await res.json();
-    console.log(data);
-    return data.imdb_id;
   };
 
   const callback = function (entries, _) {

@@ -18,6 +18,7 @@ const renderFullMovieInfo = async function (movieID) {
 };
 
 const insertMovieContent = async function (movie) {
+  console.log(movie);
   let IMDbID = undefined;
   if (urlMedia === 'tv') IMDbID = await fetchIMDbID();
   const hoursRuntime = Math.floor(movie.runtime / 60) || 0;
@@ -121,7 +122,7 @@ const insertMovieContent = async function (movie) {
   document
     .querySelector('.trailer')
     .addEventListener('click', modalWindowHandler);
-
+  document.querySelector('.tmdb-logo').addEventListener('click', tmdbRedirect);
   document.querySelector('.close-modal').addEventListener('click', closeModal);
   document.querySelector('.modal-window').addEventListener('click', closeModal);
 };
@@ -211,6 +212,10 @@ const fetchCast = async function () {
   return castArray.join('');
 };
 
+const tmdbRedirect = function () {
+  window.open(`https://www.themoviedb.org/movie/${urlID}`, '_blank');
+};
+
 const fetchRecommendedMovies = async function (movieID, media) {
   const res = await fetch(
     `https://api.themoviedb.org/3/${media}/${movieID}/recommendations?api_key=${APIKey}&language=en-US&page=1`
@@ -290,12 +295,3 @@ document.addEventListener('loadedmetadata', renderFullMovieInfo(urlID));
 document.querySelector('.back').addEventListener('click', function () {
   window.open('/index.html', '_self');
 });
-
-const x = async function () {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/tv/popular?api_key=7325ea7f7ce78a5adf1d879ccbbe0117`
-  );
-  const data = await res.json();
-  console.log(data);
-};
-x();

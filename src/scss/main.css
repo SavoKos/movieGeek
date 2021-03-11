@@ -420,12 +420,21 @@ body {
   width: 238px;
 }
 
+.movies .movie-details h6,
+.movies .movie-review h6 {
+  margin-top: 0.5rem;
+}
+
 .movies .movie-details .star,
 .movies .movie-review .star {
   width: 15px;
   height: 15px;
   margin: 5px;
-  margin-bottom: 12px;
+}
+
+.movies .movie-details .tmdb,
+.movies .movie-review .tmdb {
+  width: 25px;
 }
 
 .movies .movie-review {
