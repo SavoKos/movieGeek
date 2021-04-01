@@ -18,7 +18,6 @@ const renderFullMovieInfo = async function (movieID) {
 };
 
 const insertMovieContent = async function (movie) {
-  console.log(movie);
   let IMDbID = undefined;
   if (urlMedia === 'tv') IMDbID = await fetchIMDbID();
   const hoursRuntime = Math.floor(movie.runtime / 60) || 0;
@@ -179,7 +178,6 @@ const fetchIMDbID = async function () {
     `https://api.themoviedb.org/3/tv/${urlID}/external_ids?api_key=${APIKey}&language=en-US`
   );
   const data = await res.json();
-  console.log(data);
   return data.imdb_id;
 };
 
@@ -191,7 +189,6 @@ const fetchCast = async function () {
 
   const data = await res.json();
   const cast = data.cast;
-  console.log(cast);
   cast.forEach(act => {
     if (!act.profile_path) return;
     castArray.push(`

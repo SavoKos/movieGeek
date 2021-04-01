@@ -6,6 +6,7 @@ const search = document.querySelector('.inputSearch');
 const searched = document.querySelector('.searchedLabel');
 const filterContainer = document.querySelector('.filter-container');
 const filterDropdown = document.querySelector('.filter-dropdown');
+
 let page = 0;
 let lastElementMovie;
 let genre = undefined;
@@ -58,18 +59,11 @@ const fetchMovieGenre = async function (movie) {
 
 const renderMovie = async function (movie, def = 'Genre') {
   try {
-    let IMDbID = undefined;
-    if (urlMedia === 'tv') IMDbID = await fetchIMDbID();
-    let title = '';
-    let releaseDate = '';
-    if (movie.media_type === 'tv') {
-      title = movie.name;
-      releaseDate = movie.first_air_date.slice(0, 4);
-    } else {
-      title = movie.title;
-      if (!movie.release_date) return;
-      releaseDate = movie.release_date.slice(0, 4);
-    }
+    if (movie.media_type != 'tv' && !movie.release_date) return;
+    const title = movie.name || movie.title;
+    const releaseDate = movie.first_air_date
+      ? movie.first_air_date.slice(0, 4)
+      : movie.release_date.slice(0, 4);
 
     const genre = await fetchMovieGenre(movie);
     //   const releaseDate = movie.release_date.slice(0, 4);
@@ -109,7 +103,7 @@ const fetchMovies = async function (genre = 'undefined') {
     page++;
     let res = '';
     urlMedia = currentTab.slice(0, currentTab.indexOf('/'));
-    console.log(urlMedia);
+
     // checking if movie is already searched
     if (!searched) return;
     if (currentTab.includes('#')) {
@@ -136,7 +130,6 @@ const fetchMovies = async function (genre = 'undefined') {
     }
     const data = await res.json();
     const movies = data.results;
-    console.log(movies);
     // movieContainer.innerHTML = '';
     movies.forEach(mov => {
       // setting media_type because tv doesn't have it by default
@@ -167,12 +160,10 @@ const searchMovie = async function (e, mov = undefined, page = 1) {
 
     const data = await res.json();
     const movies = data.results;
-    console.log(movies);
     movieContainer.innerHTML = '';
     footer.textContent = `${page}`;
     searched.dataset.type = `${window.location.hash}`;
     window.location.hash = search.value.split(' ').join('+');
-    console.log(window.location.hash.slice(1).split('+').join('  '));
     searched.textContent = `🔎 ${window.location.hash
       .slice(1)
       .split('+')
@@ -198,7 +189,6 @@ const fetchNewMovieOnScroll = function () {
 
   const callback = function (entries, _) {
     entries.forEach(ent => {
-      console.log(ent);
       if (ent.isIntersecting) {
         fetchMovies();
         observer.unobserve(footer);
@@ -212,9 +202,7 @@ const fetchNewMovieOnScroll = function () {
 };
 
 const hamburgerMenuHandler = function () {
-  const hamburgerDropdown = document
-    .querySelector('.hamburger-dropdown')
-    .classList.toggle('hidden');
+  document.querySelector('.hamburger-dropdown').classList.toggle('hidden');
 };
 
 const renderFullMovieInfo = async function (movieID, media) {
@@ -222,7 +210,6 @@ const renderFullMovieInfo = async function (movieID, media) {
     `https://api.themoviedb.org/3/movie/${movieID}?api_key=7325ea7f7ce78a5adf1d879ccbbe0117&language=en-US`
   );
   const data = await res.json();
-  console.log(data);
   window.open(`../../movieInfo.html#${movieID}/${media}`, '_self');
 };
 
@@ -254,4 +241,3 @@ if (movieContainer)
       currentTab.slice(0, currentTab.indexOf('/'));
     renderFullMovieInfo(movieID, movieMedia);
   });
-//
