@@ -1,5 +1,5 @@
-<p align="center"><a href="https://moviegeek.savokos.com" target="_blank" rel="noopener noreferrer"><img src="https://res.cloudinary.com/dicynt7ms/image/upload/v1630661871/important/favicon_irtaeg.png" width="100"></a></p>
-<h1 align="center"><a href="https://moviegeek.savokos.com" target="_blank" rel="noopener noreferrer" style="color:#FFC107;">movieGeek</a></h1>
+<p align="center"><a href="https://moviegeek.savo-kos.com" target="_blank" rel="noopener noreferrer"><img src="https://res.cloudinary.com/dicynt7ms/image/upload/v1630661871/important/favicon_irtaeg.png" width="100"></a></p>
+<h1 align="center"><a href="https://moviegeek.savo-kos.com" target="_blank" rel="noopener noreferrer" style="color:#FFC107;">movieGeek</a></h1>
 
 <br>
 
@@ -10,7 +10,7 @@
 ![Project Image2](https://res.cloudinary.com/dicynt7ms/image/upload/v1630661621/important/screencapture-moviegeek-savokos-movieinfo-2021-09-03-11_32_36_gp23zm.png)
 <br>
 
-![LiveWebsite](https://res.cloudinary.com/dicynt7ms/image/upload/w_20,h_20/v1630442590/important/NicePng_website-png_187940_pizwnr.png) <span>Live website - <a href="https://moviegeek.savokos.com" target="_blank" rel="noopener noreferrer"> moviegeek.savokos.com</a></span>
+![LiveWebsite](https://res.cloudinary.com/dicynt7ms/image/upload/w_20,h_20/v1630442590/important/NicePng_website-png_187940_pizwnr.png) <span>Live website - <a href="https://moviegeek.savo-kos.com" target="_blank" rel="noopener noreferrer"> moviegeek.savo-kos.com</a></span>
 
 ## Table of Contents
 
@@ -56,5 +56,5 @@ SOFTWARE.
 
 ## Author Info
 
-- Upwork - [Savo Kos](https://links.savokos.com/upwork)
-- Website - [savokos.com](https://savokos.com)
+- Upwork - [Savo Kos](https://links.savo-kos.com/upwork)
+- Website - [savo-kos.com](https://savo-kos.com)
